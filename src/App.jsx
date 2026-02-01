@@ -85,25 +85,6 @@ export default function App() {
         setSubtitle("YAY!! 💕 Now choose what we do and pick a time:");
     };
 
-    const chooseOption = (opt) => {
-        setChosen(opt);
-        sendToWhatsApp(opt, meetTime);
-    };
-
-    const submitCustomIdea = (e) => {
-        e.preventDefault();
-        const trimmed = customIdea.trim();
-        if (!trimmed) return;
-        const finalChoice = `💡 ${trimmed}`;
-        setChosen(finalChoice);
-        setCustomIdea("");
-        sendToWhatsApp(finalChoice, meetTime);
-    };
-
-    const handleTimeChange = (e) => {
-        setMeetTime(e.target.value);
-        if (chosen) sendToWhatsApp(chosen, e.target.value);
-    };
 
     return (
         <div className="page">
@@ -137,14 +118,18 @@ export default function App() {
                                     <button
                                         key={opt}
                                         className="option"
-                                        onClick={() => chooseOption(opt)}
+                                        onClick={() => setChosen(opt)}
                                     >
                                         {opt}
                                     </button>
                                 ))}
                             </div>
 
-                            <form className="customBox" onSubmit={submitCustomIdea}>
+                            <form className="customBox" onSubmit={(e) => {
+                                e.preventDefault();
+                                setChosen(`💡 ${customIdea.trim()}`);
+                                setCustomIdea("");
+                            }}>
                                 <label className="customLabel">Or type your own idea 😏✨</label>
                                 <div className="customRow">
                                     <input
@@ -166,15 +151,29 @@ export default function App() {
                                 <input
                                     type="time"
                                     value={meetTime}
-                                    onChange={handleTimeChange}
+                                    onChange={(e) => setMeetTime(e.target.value)}
                                     className="customInput"
                                 />
                             </div>
 
-                            {chosen && (
+                            {chosen && meetTime && (
+                                <button
+                                    className="submit"
+                                    onClick={() => sendToWhatsApp(chosen, meetTime)}
+                                >
+                                    Send 💌
+                                </button>
+                            )}
+
+                            {chosen && !meetTime && (
+                                <p className="subtitle" style={{color: "red"}}>
+                                    Please pick a time 🕒 before sending!
+                                </p>
+                            )}
+
+                            {chosen && meetTime && (
                                 <p className="chosen">
-                                    Perfect 😍 We’re doing: <span>{chosen}</span> at{" "}
-                                    <span>{meetTime || "??"}</span>
+                                    Perfect 😍 We’re doing: <span>{chosen}</span> at <span>{meetTime}</span>
                                 </p>
                             )}
 
@@ -190,6 +189,7 @@ export default function App() {
                             </button>
                         </section>
                     )}
+
 
                     <p className="footer">Made with love ✨</p>
                 </div>
