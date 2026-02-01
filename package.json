@@ -2,7 +2,7 @@
   "name": "valentines",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://b3nd4b0ss.github.io/Valentines/",
+  "homepage": "https://b3nd4b0ss.github.io/valentines/",
   "type": "module",
   "scripts": {
     "dev": "vite",
