@@ -1,42 +1,224 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+    padding: 16px;
+    font-family: Arial, sans-serif;
 }
 
 .card {
-  padding: 2em;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
-.read-the-docs {
-  color: #888;
+.heart {
+    font-size: 48px;
+    margin-bottom: 10px;
+    animation: pop 1.2s infinite ease-in-out;
+}
+
+@keyframes pop {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+h1 {
+    font-size: 1.9rem;
+    color: #d81b60;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    margin: 10px 0 20px;
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: relative; /* No button starts relative here */
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    min-width: 120px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.yes {
+    background: #ff2e7a;
+    color: white;
+    box-shadow: 0 8px 15px rgba(255, 46, 122, 0.25);
+}
+
+.yes:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(255, 46, 122, 0.35);
+}
+
+.no {
+    background: white;
+    color: #ff2e7a;
+    border: 2px solid rgba(255, 46, 122, 0.35);
+    /* position: relative initially, will become fixed after click */
+}
+
+.options {
+    margin-top: 14px;
+}
+
+.optionGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option {
+    background: white;
+    border: 2px solid rgba(255, 46, 122, 0.25);
+    color: #d81b60;
+    padding: 10px 12px;
+    border-radius: 14px;
+}
+
+.customBox {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255, 46, 122, 0.05);
+    border: 1px solid rgba(255, 46, 122, 0.15);
+    text-align: left;
+}
+
+.customLabel {
+    display: block;
+    font-weight: 700;
+    color: #d81b60;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.customRow {
+    display: flex;
+    gap: 6px;
+}
+
+.customInput {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 46, 122, 0.25);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.customInput:focus {
+    border-color: rgba(255, 46, 122, 0.5);
+}
+
+.customBtn {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #ff2e7a;
+    color: white;
+}
+
+.timePicker {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.customInput {
+    width: calc(100% - 24px);
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 46, 122, 0.25);
+    font-size: 0.95rem;
+    margin-top: 6px;
+}
+
+.chosen {
+    margin-top: 12px;
+    font-weight: 700;
+    color: #d81b60;
+}
+
+.chosen span {
+    color: #b3124e;
+}
+
+.reset {
+    margin-top: 6px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    background: rgba(255, 46, 122, 0.1);
+    color: #d81b60;
+}
+
+.footer {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+@media (max-width: 800px) {
+    .optionGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .card {
+        padding: 20px 14px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .optionGrid {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        font-size: 0.95rem;
+        min-width: 100px;
+        padding: 10px 12px;
+    }
 }
