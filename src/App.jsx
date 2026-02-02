@@ -176,17 +176,6 @@ export default function App() {
                                     Perfect 😍 We’re doing: <span>{chosen}</span> at <span>{meetTime}</span>
                                 </p>
                             )}
-
-                            <button
-                                className="reset"
-                                onClick={() => {
-                                    setChosen("");
-                                    setCustomIdea("");
-                                    setMeetTime("");
-                                }}
-                            >
-                                Choose again ↩
-                            </button>
                         </section>
                     )}
 
